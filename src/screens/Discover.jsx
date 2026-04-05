@@ -49,11 +49,11 @@ export default function Discover() {
       </div>
 
       {/* Card stack */}
-      <div className="flex-1 flex flex-col items-center justify-center px-5 pb-4 relative">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 pb-2 relative min-h-0">
         {remaining.length === 0 ? (
           <EmptyState onReset={handleReset} passed={state.passed.length} liked={state.liked.length} />
         ) : (
-          <div className="relative w-full max-w-sm" style={{ height: 'min(520px, 58dvh)' }}>
+          <div className="relative w-full max-w-sm" style={{ height: 'min(480px, 56dvh)' }}>
             {/* Render bottom 2 cards as decorative stack */}
             {remaining.slice(1, 3).map((c, i) => (
               <div
