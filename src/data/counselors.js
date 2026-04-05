@@ -22,6 +22,10 @@ export const COUNSELORS = [
     interests: ['Painting', 'Swimming', 'Playing Piano', 'Travel'],
     photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80',
     specializations: ['Family Therapy', 'Codependency', 'Trauma & PTSD'],
+    rating: 4.9,
+    reviewCount: 156,
+    remote: true,
+    inPerson: true,
   },
   {
     id: 2,
@@ -46,6 +50,10 @@ export const COUNSELORS = [
     interests: ['Basketball', 'Cooking', 'Mentoring Youth', 'Hiking'],
     photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80',
     specializations: ['Opioid Dependency', 'Harm Reduction', 'Relapse Prevention'],
+    rating: 4.8,
+    reviewCount: 312,
+    remote: true,
+    inPerson: false,
   },
   {
     id: 3,
@@ -70,6 +78,10 @@ export const COUNSELORS = [
     interests: ['Yoga', 'Reading', 'Cooking', 'Community Volunteering'],
     photo: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80',
     specializations: ['Dual Diagnosis', 'Stimulant Recovery', 'Teen & Young Adult'],
+    rating: 4.95,
+    reviewCount: 203,
+    remote: true,
+    inPerson: true,
   },
   {
     id: 4,
@@ -94,6 +106,10 @@ export const COUNSELORS = [
     interests: ['Golf', 'Woodworking', 'Reading', 'Gardening'],
     photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80',
     specializations: ['Family Therapy', 'Codependency', 'Grief & Loss'],
+    rating: 4.7,
+    reviewCount: 489,
+    remote: true,
+    inPerson: true,
   },
   {
     id: 5,
@@ -118,6 +134,10 @@ export const COUNSELORS = [
     interests: ['Dancing', 'Photography', 'Beach Volleyball', 'Music'],
     photo: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80',
     specializations: ['LGBTQ+ Affirming', 'Cannabis Use', 'Teen & Young Adult'],
+    rating: 4.85,
+    reviewCount: 98,
+    remote: true,
+    inPerson: false,
   },
   {
     id: 6,
@@ -142,6 +162,10 @@ export const COUNSELORS = [
     interests: ['Rock Climbing', 'Chess', 'Cycling', 'Meditation'],
     photo: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80',
     specializations: ['Opioid Dependency', 'Stimulant Recovery', 'Dual Diagnosis'],
+    rating: 4.9,
+    reviewCount: 274,
+    remote: true,
+    inPerson: true,
   },
 ];
 

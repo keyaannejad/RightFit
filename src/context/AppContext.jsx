@@ -3,7 +3,7 @@ import { createContext, useContext, useReducer } from 'react';
 const AppContext = createContext(null);
 
 const initialState = {
-  user: null,           // { name, type: 'seeker'|'counselor', addictions, goals, avatar }
+  user: null,           // { name, avatar, addiction_type, duration, goal, session_type }
   matches: [],          // counselor ids that were liked back (simulated)
   liked: [],            // counselor ids the user swiped right
   passed: [],           // counselor ids the user swiped left

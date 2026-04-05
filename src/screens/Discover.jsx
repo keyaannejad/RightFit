@@ -183,54 +183,63 @@ function DetailModal({ counselor, onClose, onLike, onPass }) {
           <div className="w-10 h-1 bg-gray-200 rounded-full" />
         </div>
 
-        {/* Header */}
-        <div className={`h-32 bg-gradient-to-br ${counselor.slideColor} mx-4 rounded-2xl flex items-end p-4`}>
-          <div className="w-16 h-16 rounded-xl bg-white shadow-lg overflow-hidden">
-            <img src={counselor.image} alt={counselor.name} className="w-full h-full object-cover" />
-          </div>
-          <div className="ml-3">
-            <h3 className="text-white font-bold text-lg">{counselor.name}</h3>
+        {/* Header photo */}
+        <div className="relative h-40 mx-4 rounded-2xl overflow-hidden">
+          <img src={counselor.photo} alt={counselor.name} className="w-full h-full object-cover object-top" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-4">
+            <h3 className="text-white font-bold text-xl">{counselor.name}</h3>
             <p className="text-white/80 text-sm">{counselor.title}</p>
           </div>
         </div>
 
         <div className="px-5 py-5 space-y-5">
-          <p className="text-gray-600 leading-relaxed">{counselor.bio}</p>
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-3">
+            <StatBox value={counselor.yearsExperience} label="Yrs Exp." color="#7c3aed" />
+            <StatBox value={`${counselor.successRate}%`} label="Success" color="#22c55e" />
+            <StatBox value={counselor.clientsHelped} label="Clients" color="#3b82f6" />
+          </div>
+
+          <p className="text-gray-600 leading-relaxed text-sm">{counselor.about}</p>
 
           <Section title="Specializations">
             <div className="flex flex-wrap gap-2">
               {counselor.specializations.map(s => (
-                <span key={s} className="text-sm px-3 py-1.5 rounded-full font-medium"
-                  style={{ background: `${counselor.accentColor}18`, color: counselor.accentColor }}>
-                  {s}
-                </span>
+                <span key={s} className="text-sm px-3 py-1.5 rounded-full font-medium bg-violet-50 text-violet-700">{s}</span>
               ))}
             </div>
           </Section>
 
-          <Section title="Therapeutic Approaches">
-            <div className="flex flex-wrap gap-2">
-              {counselor.approaches.map(a => (
-                <span key={a} className="text-sm px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 font-medium">{a}</span>
+          <Section title="Certifications">
+            <ul className="space-y-1">
+              {counselor.certifications.map(c => (
+                <li key={c} className="text-sm text-gray-600 flex gap-2"><span className="text-violet-400">•</span>{c}</li>
               ))}
-            </div>
+            </ul>
           </Section>
 
           <Section title="Details">
             <div className="grid grid-cols-2 gap-3">
-              <DetailRow label="Experience" value={`${counselor.yearsExperience} years`} />
+              <DetailRow label="Education" value={counselor.education} />
               <DetailRow label="Languages" value={counselor.languages.join(', ')} />
-              <DetailRow label="Session Cost" value={`$${counselor.sessionCost}/session`} />
               <DetailRow label="Availability" value={counselor.availability} />
               <DetailRow label="Format" value={[counselor.remote && 'Online', counselor.inPerson && 'In-person'].filter(Boolean).join(' & ')} />
-              <DetailRow label="Reviews" value={`${counselor.reviewCount} reviews`} />
             </div>
           </Section>
 
-          <Section title="Insurance Accepted">
+          <Section title="Session Types">
             <div className="flex flex-wrap gap-2">
-              {counselor.insurance.map(ins => (
-                <span key={ins} className="text-sm bg-gray-50 border border-gray-200 px-3 py-1 rounded-lg text-gray-600">{ins}</span>
+              {counselor.sessionTypes.map(s => (
+                <span key={s} className="text-sm px-3 py-1.5 rounded-full bg-purple-100 text-purple-700 font-medium">{s}</span>
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Personal Interests">
+            <div className="flex flex-wrap gap-2">
+              {counselor.interests.map(i => (
+                <span key={i} className="text-sm px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 border border-gray-200">{i}</span>
               ))}
             </div>
           </Section>
@@ -254,6 +263,15 @@ function DetailModal({ counselor, onClose, onLike, onPass }) {
         </div>
       </motion.div>
     </motion.div>
+  );
+}
+
+function StatBox({ value, label, color }) {
+  return (
+    <div className="bg-gray-50 rounded-xl p-3 text-center">
+      <div className="text-xl font-bold mb-0.5" style={{ color }}>{value}</div>
+      <div className="text-gray-500 text-xs">{label}</div>
+    </div>
   );
 }
 
