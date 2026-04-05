@@ -33,9 +33,9 @@ export default function TeamView() {
   const [tab, setTab] = useState('dashboard'); // 'dashboard' | 'analytics'
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-violet-50 to-white pb-28">
+    <div className="min-h-dvh flex flex-col bg-gradient-to-b from-violet-50 to-white content-bottom">
       {/* Header */}
-      <div className="px-5 pt-12 pb-4">
+      <div className="px-5 pb-4 screen-top">
         <h1 className="text-2xl font-bold text-gray-900">
           {tab === 'dashboard' ? 'Counselor Dashboard' : 'Team Analytics'} 📊
         </h1>
@@ -52,7 +52,7 @@ export default function TeamView() {
         </div>
       </div>
 
-      <div className="px-5 overflow-y-auto flex-1">
+      <div className="px-5 overflow-y-auto flex-1 scroll-touch pb-4">
         <AnimatePresence mode="wait">
           {tab === 'dashboard' ? (
             <motion.div key="dash" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.25 }}>

@@ -18,7 +18,7 @@ export default function BottomNav() {
   const unreadMatches = state.matches.length;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-gray-100">
+    <div className="fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-gray-100 nav-bottom">
       <div className="flex max-w-md mx-auto">
         {TABS.map(({ path, icon: Icon, label }) => {
           const active = location.pathname === path;

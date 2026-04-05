@@ -4,7 +4,7 @@ import { Heart, Shield, Sparkles } from 'lucide-react';
 
 function RightFitEmblem() {
   return (
-    <svg viewBox="0 0 220 220" width="220" height="220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 220 220" width="min(220px, 50vw)" height="min(220px, 50vw)" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* Glow circle */}
       <circle cx="110" cy="105" r="90" fill="rgba(255,255,255,0.08)" />
 
@@ -74,14 +74,14 @@ export default function Welcome() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 px-6 py-12">
+    <div className="min-h-dvh flex flex-col items-center justify-between bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 px-6 py-4 screen-top">
       {/* Decorative blobs */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
       {/* Wordmark */}
       <motion.div
-        className="text-center mt-8"
+        className="text-center mt-2"
         initial={{ opacity: 0, y: -24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}

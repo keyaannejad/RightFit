@@ -28,9 +28,9 @@ export default function Discover() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-violet-50 to-white">
+    <div className="min-h-dvh flex flex-col bg-gradient-to-b from-violet-50 to-white">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 pt-12 pb-2">
+      <div className="flex items-center justify-between px-5 pb-2 screen-top">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
             RightFit <span className="text-2xl">💜</span>
@@ -53,7 +53,7 @@ export default function Discover() {
         {remaining.length === 0 ? (
           <EmptyState onReset={handleReset} passed={state.passed.length} liked={state.liked.length} />
         ) : (
-          <div className="relative w-full max-w-sm h-[520px]">
+          <div className="relative w-full max-w-sm" style={{ height: 'min(520px, 58dvh)' }}>
             {/* Render bottom 2 cards as decorative stack */}
             {remaining.slice(1, 3).map((c, i) => (
               <div
@@ -89,7 +89,7 @@ export default function Discover() {
 
       {/* Action buttons */}
       {remaining.length > 0 && (
-        <div className="flex items-center justify-center gap-5 pb-28">
+        <div className="flex items-center justify-center gap-5 content-bottom pt-4">
           {/* Pass */}
           <motion.button
             onClick={() => handlePass(remaining[0]?.id)}
@@ -171,7 +171,7 @@ function DetailModal({ counselor, onClose, onLike, onPass }) {
       onClick={onClose}
     >
       <motion.div
-        className="bg-white w-full rounded-t-3xl max-h-[90vh] overflow-y-auto"
+        className="bg-white w-full rounded-t-3xl max-h-[92dvh] overflow-y-auto scroll-touch"
         initial={{ y: '100%' }}
         animate={{ y: 0 }}
         exit={{ y: '100%' }}

@@ -111,9 +111,9 @@ export default function Onboarding() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-violet-50 to-white">
+    <div className="min-h-dvh flex flex-col bg-gradient-to-b from-violet-50 to-white">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 pt-12 pb-4">
+      <div className="flex items-center justify-between px-5 pb-4 screen-top">
         <button
           onClick={goBack}
           className={`w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-sm text-gray-500 active:scale-90 transition-transform ${step === 0 ? 'opacity-0 pointer-events-none' : ''}`}
@@ -258,7 +258,7 @@ export default function Onboarding() {
       </div>
 
       {/* CTA */}
-      <div className="px-5 pb-10 pt-4">
+      <div className="px-5 pb-safe pt-4">
         <motion.button
           onClick={goNext}
           disabled={!canProceed()}

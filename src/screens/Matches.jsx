@@ -49,8 +49,8 @@ export default function Matches() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-violet-50 to-white">
-      <div className="px-5 pt-12 pb-4">
+    <div className="min-h-dvh flex flex-col bg-gradient-to-b from-violet-50 to-white">
+      <div className="px-5 pb-4 screen-top">
         <h1 className="text-2xl font-bold text-gray-900">Your Matches 💜</h1>
         <p className="text-gray-400 text-sm mt-0.5">
           {matchedCounselors.length === 0
@@ -59,7 +59,7 @@ export default function Matches() {
         </p>
       </div>
 
-      <div className="flex-1 px-5 pb-28 overflow-y-auto">
+      <div className="flex-1 px-5 content-bottom overflow-y-auto scroll-touch">
         {matchedCounselors.length === 0 ? (
           <EmptyMatches />
         ) : (
@@ -204,9 +204,9 @@ function ChatScreen({ counselor, onBack }) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="h-dvh flex flex-col bg-white overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 pt-12 pb-4 border-b border-gray-100 bg-white/95 backdrop-blur-sm sticky top-0 z-10">
+      <div className="flex items-center gap-3 px-4 pb-4 screen-top border-b border-gray-100 bg-white/95 backdrop-blur-sm sticky top-0 z-10">
         <button onClick={onBack} className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 active:scale-90 transition-transform">
           <ArrowLeft size={18} />
         </button>
@@ -224,7 +224,7 @@ function ChatScreen({ counselor, onBack }) {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 pb-4">
+      <div className="flex-1 min-h-0 overflow-y-auto px-4 py-4 space-y-3 pb-4 scroll-touch">
         {/* Match banner */}
         <div className="text-center py-2">
           <span className="text-xs bg-violet-50 text-violet-500 px-3 py-1 rounded-full font-medium">
@@ -330,7 +330,7 @@ function ChatScreen({ counselor, onBack }) {
       )}
 
       {/* Input */}
-      <div className="px-4 pb-8 pt-2 border-t border-gray-100 bg-white flex items-center gap-3">
+      <div className="px-4 pb-safe pt-2 border-t border-gray-100 bg-white flex items-center gap-3">
         <input
           type="text"
           value={input}

@@ -27,9 +27,9 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-violet-50 to-white pb-28">
+    <div className="min-h-dvh flex flex-col bg-gradient-to-b from-violet-50 to-white content-bottom">
       {/* Header */}
-      <div className="px-5 pt-12 pb-6">
+      <div className="px-5 pb-6 screen-top">
         <h1 className="text-2xl font-bold text-gray-900">Profile</h1>
       </div>
 
