@@ -5,6 +5,7 @@ import Onboarding from './screens/Onboarding';
 import Discover from './screens/Discover';
 import Matches from './screens/Matches';
 import Profile from './screens/Profile';
+import TeamView from './screens/TeamView';
 
 function AppRoutes() {
   const { state } = useApp();
@@ -14,10 +15,11 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Welcome />} />
       <Route path="/onboarding" element={<Onboarding />} />
-      <Route path="/discover" element={hasUser ? <Discover /> : <Navigate to="/" replace />} />
-      <Route path="/matches" element={hasUser ? <Matches /> : <Navigate to="/" replace />} />
-      <Route path="/profile" element={hasUser ? <Profile /> : <Navigate to="/" replace />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="/discover"   element={hasUser ? <Discover />  : <Navigate to="/" replace />} />
+      <Route path="/matches"    element={hasUser ? <Matches />   : <Navigate to="/" replace />} />
+      <Route path="/profile"    element={hasUser ? <Profile />   : <Navigate to="/" replace />} />
+      <Route path="/team"       element={hasUser ? <TeamView />  : <Navigate to="/" replace />} />
+      <Route path="*"           element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

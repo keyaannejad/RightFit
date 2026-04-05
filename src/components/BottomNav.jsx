@@ -1,12 +1,13 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Layers, MessageCircle, User } from 'lucide-react';
+import { Layers, MessageCircle, User, BarChart2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 const TABS = [
-  { path: '/discover', icon: Layers, label: 'Discover' },
-  { path: '/matches', icon: MessageCircle, label: 'Matches' },
-  { path: '/profile', icon: User, label: 'Profile' },
+  { path: '/discover', icon: Layers,        label: 'Discover' },
+  { path: '/matches',  icon: MessageCircle, label: 'Matches'  },
+  { path: '/team',     icon: BarChart2,     label: 'Team'     },
+  { path: '/profile',  icon: User,          label: 'Profile'  },
 ];
 
 export default function BottomNav() {
@@ -32,9 +33,8 @@ export default function BottomNav() {
               <div className="relative">
                 <Icon
                   size={22}
-                  className="transition-colors"
-                  style={{ color: active ? '#7c3aed' : '#9ca3af' }}
                   strokeWidth={active ? 2.5 : 2}
+                  style={{ color: active ? '#7c3aed' : '#9ca3af' }}
                 />
                 {badge && (
                   <motion.div
@@ -42,14 +42,11 @@ export default function BottomNav() {
                     animate={{ scale: 1 }}
                     className="absolute -top-1 -right-1.5 w-4 h-4 bg-violet-600 rounded-full flex items-center justify-center"
                   >
-                    <span className="text-white text-xs font-bold leading-none" style={{ fontSize: 9 }}>{badge}</span>
+                    <span className="text-white font-bold leading-none" style={{ fontSize: 9 }}>{badge}</span>
                   </motion.div>
                 )}
               </div>
-              <span
-                className="text-xs font-medium transition-colors"
-                style={{ color: active ? '#7c3aed' : '#9ca3af' }}
-              >
+              <span className="text-xs font-medium" style={{ color: active ? '#7c3aed' : '#9ca3af' }}>
                 {label}
               </span>
               {active && (

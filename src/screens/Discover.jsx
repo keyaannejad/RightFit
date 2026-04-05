@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart, Info, RotateCcw } from 'lucide-react';
+import { X, Heart, Info, RotateCcw, MapPin, Users, GraduationCap, Award, Languages as LanguagesIcon, Video, Calendar, User, Sparkles } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { COUNSELORS } from '../data/counselors';
 import SwipeCard from '../components/SwipeCard';
@@ -193,102 +193,112 @@ function DetailModal({ counselor, onClose, onLike, onPass }) {
           </div>
         </div>
 
-        <div className="px-5 py-5 space-y-5">
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-3">
-            <StatBox value={counselor.yearsExperience} label="Yrs Exp." color="#7c3aed" />
-            <StatBox value={`${counselor.successRate}%`} label="Success" color="#22c55e" />
-            <StatBox value={counselor.clientsHelped} label="Clients" color="#3b82f6" />
-          </div>
+        <div className="divide-y divide-gray-100">
+          {/* Location */}
+          <SheetSection icon={<MapPin size={16} className="text-violet-500" />} label="LOCATION">
+            <p className="text-gray-700">{counselor.location}</p>
+          </SheetSection>
 
-          <p className="text-gray-600 leading-relaxed text-sm">{counselor.about}</p>
-
-          <Section title="Specializations">
-            <div className="flex flex-wrap gap-2">
-              {counselor.specializations.map(s => (
-                <span key={s} className="text-sm px-3 py-1.5 rounded-full font-medium bg-violet-50 text-violet-700">{s}</span>
-              ))}
+          {/* Experience & Success */}
+          <SheetSection icon={<Users size={16} className="text-violet-500" />} label="EXPERIENCE & SUCCESS">
+            <div className="grid grid-cols-2 gap-3 mb-3">
+              <StatBox value={counselor.yearsExperience} label="Years Experience" color="#374151" />
+              <StatBox value={`${counselor.successRate}%`} label="Success Rate" color="#22c55e" />
             </div>
-          </Section>
+            <StatBox value={counselor.clientsHelped} label="Clients Helped" color="#3b82f6" />
+          </SheetSection>
 
-          <Section title="Certifications">
-            <ul className="space-y-1">
+          {/* Education */}
+          <SheetSection icon={<GraduationCap size={16} className="text-violet-500" />} label="EDUCATION">
+            <p className="text-gray-700">{counselor.education}</p>
+          </SheetSection>
+
+          {/* Certifications */}
+          <SheetSection icon={<Award size={16} className="text-violet-500" />} label="CERTIFICATIONS">
+            <ul className="space-y-1.5">
               {counselor.certifications.map(c => (
-                <li key={c} className="text-sm text-gray-600 flex gap-2"><span className="text-violet-400">•</span>{c}</li>
+                <li key={c} className="text-gray-700 text-sm flex gap-2"><span className="text-violet-400 mt-0.5">•</span>{c}</li>
               ))}
             </ul>
-          </Section>
+          </SheetSection>
 
-          <Section title="Details">
-            <div className="grid grid-cols-2 gap-3">
-              <DetailRow label="Education" value={counselor.education} />
-              <DetailRow label="Languages" value={counselor.languages.join(', ')} />
-              <DetailRow label="Availability" value={counselor.availability} />
-              <DetailRow label="Format" value={[counselor.remote && 'Online', counselor.inPerson && 'In-person'].filter(Boolean).join(' & ')} />
+          {/* Languages */}
+          <SheetSection icon={<LanguagesIcon size={16} className="text-violet-500" />} label="LANGUAGES">
+            <div className="flex flex-wrap gap-2">
+              {counselor.languages.map(l => (
+                <span key={l} className="px-3 py-1 rounded-full text-sm border border-blue-200 text-blue-600 bg-blue-50 font-medium">{l}</span>
+              ))}
             </div>
-          </Section>
+          </SheetSection>
 
-          <Section title="Session Types">
+          {/* Session Types */}
+          <SheetSection icon={<Video size={16} className="text-violet-500" />} label="SESSION TYPES">
             <div className="flex flex-wrap gap-2">
               {counselor.sessionTypes.map(s => (
-                <span key={s} className="text-sm px-3 py-1.5 rounded-full bg-purple-100 text-purple-700 font-medium">{s}</span>
+                <span key={s} className="px-3 py-1.5 rounded-full text-sm bg-purple-100 text-purple-700 font-medium">{s}</span>
               ))}
             </div>
-          </Section>
+          </SheetSection>
 
-          <Section title="Personal Interests">
+          {/* Availability */}
+          <SheetSection icon={<Calendar size={16} className="text-violet-500" />} label="AVAILABILITY">
+            <p className="text-gray-700">{counselor.availability}</p>
+          </SheetSection>
+
+          {/* About */}
+          <SheetSection icon={<User size={16} className="text-violet-500" />} label="ABOUT">
+            <p className="text-gray-600 text-sm leading-relaxed">{counselor.about}</p>
+          </SheetSection>
+
+          {/* Personal Interests */}
+          <SheetSection icon={<Sparkles size={16} className="text-violet-500" />} label="PERSONAL INTERESTS">
             <div className="flex flex-wrap gap-2">
               {counselor.interests.map(i => (
-                <span key={i} className="text-sm px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 border border-gray-200">{i}</span>
+                <span key={i} className="px-3 py-1.5 rounded-full text-sm bg-gray-100 text-gray-700 border border-gray-200">{i}</span>
               ))}
             </div>
-          </Section>
+          </SheetSection>
+        </div>
 
-          {/* Action buttons */}
-          <div className="flex gap-3 pb-4">
-            <button
-              onClick={() => { onPass(counselor.id); onClose(); }}
-              className="flex-1 py-3.5 rounded-2xl border-2 border-red-200 text-red-500 font-bold flex items-center justify-center gap-2"
-            >
-              <X size={18} /> Skip
-            </button>
-            <button
-              onClick={() => { onLike(counselor.id); onClose(); }}
-              className="flex-1 py-3.5 rounded-2xl font-bold text-white flex items-center justify-center gap-2"
-              style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
-            >
-              <Heart size={18} fill="white" /> Connect
-            </button>
-          </div>
+        {/* Buttons */}
+        <div className="px-5 pt-4 pb-8 space-y-3">
+          <button
+            onClick={() => { onLike(counselor.id); onClose(); }}
+            className="w-full py-4 rounded-2xl font-bold text-white flex items-center justify-center gap-2 text-base"
+            style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
+          >
+            <Heart size={18} fill="white" /> Connect with {counselor.name.split(' ')[0]}
+          </button>
+          <button
+            onClick={onClose}
+            className="w-full py-4 rounded-2xl font-bold text-white text-base"
+            style={{ background: '#1a1a2e' }}
+          >
+            Close Profile
+          </button>
         </div>
       </motion.div>
     </motion.div>
   );
 }
 
-function StatBox({ value, label, color }) {
+function SheetSection({ icon, label, children }) {
   return (
-    <div className="bg-gray-50 rounded-xl p-3 text-center">
-      <div className="text-xl font-bold mb-0.5" style={{ color }}>{value}</div>
-      <div className="text-gray-500 text-xs">{label}</div>
-    </div>
-  );
-}
-
-function Section({ title, children }) {
-  return (
-    <div>
-      <h4 className="font-bold text-gray-900 mb-2.5">{title}</h4>
+    <div className="px-5 py-4">
+      <div className="flex items-center gap-2 mb-3">
+        {icon}
+        <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">{label}</span>
+      </div>
       {children}
     </div>
   );
 }
 
-function DetailRow({ label, value }) {
+function StatBox({ value, label, color }) {
   return (
     <div className="bg-gray-50 rounded-xl p-3">
-      <div className="text-xs text-gray-400 mb-0.5">{label}</div>
-      <div className="text-sm font-semibold text-gray-800">{value}</div>
+      <div className="text-2xl font-bold mb-0.5" style={{ color }}>{value}</div>
+      <div className="text-gray-500 text-xs">{label}</div>
     </div>
   );
 }
