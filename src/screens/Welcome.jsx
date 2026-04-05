@@ -2,6 +2,68 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Heart, Shield, Sparkles } from 'lucide-react';
 
+function RightFitEmblem() {
+  return (
+    <svg viewBox="0 0 220 220" width="220" height="220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Glow circle */}
+      <circle cx="110" cy="105" r="90" fill="rgba(255,255,255,0.08)" />
+
+      {/* Left hand */}
+      <g fill="rgba(255,255,255,0.92)">
+        {/* Left palm */}
+        <ellipse cx="72" cy="148" rx="26" ry="18" transform="rotate(-18 72 148)" />
+        {/* Left thumb */}
+        <ellipse cx="50" cy="138" rx="8" ry="14" transform="rotate(-40 50 138)" />
+        {/* Left index */}
+        <ellipse cx="58" cy="118" rx="7" ry="18" transform="rotate(-25 58 118)" />
+        {/* Left middle */}
+        <ellipse cx="72" cy="112" rx="7" ry="20" transform="rotate(-10 72 112)" />
+        {/* Left ring */}
+        <ellipse cx="86" cy="116" rx="7" ry="18" transform="rotate(8 86 116)" />
+        {/* Left pinky */}
+        <ellipse cx="97" cy="124" rx="6" ry="14" transform="rotate(20 97 124)" />
+      </g>
+
+      {/* Right hand (mirror) */}
+      <g fill="rgba(255,255,255,0.92)">
+        {/* Right palm */}
+        <ellipse cx="148" cy="148" rx="26" ry="18" transform="rotate(18 148 148)" />
+        {/* Right thumb */}
+        <ellipse cx="170" cy="138" rx="8" ry="14" transform="rotate(40 170 138)" />
+        {/* Right index */}
+        <ellipse cx="162" cy="118" rx="7" ry="18" transform="rotate(25 162 118)" />
+        {/* Right middle */}
+        <ellipse cx="148" cy="112" rx="7" ry="20" transform="rotate(10 148 112)" />
+        {/* Right ring */}
+        <ellipse cx="134" cy="116" rx="7" ry="18" transform="rotate(-8 134 116)" />
+        {/* Right pinky */}
+        <ellipse cx="123" cy="124" rx="6" ry="14" transform="rotate(-20 123 124)" />
+      </g>
+
+      {/* Spade shape */}
+      {/* Spade top (heart shape inverted) */}
+      <path
+        d="M110 48
+           C110 48 80 68 80 88
+           C80 104 94 112 110 104
+           C126 112 140 104 140 88
+           C140 68 110 48 110 48Z"
+        fill="rgba(255,255,255,0.95)"
+      />
+      {/* Spade bottom stem + wings */}
+      <path
+        d="M103 104 C103 118 94 126 84 128 L136 128 C126 126 117 118 117 104Z"
+        fill="rgba(255,255,255,0.95)"
+      />
+
+      {/* Subtle text below */}
+      <text x="110" y="175" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fontWeight="600" letterSpacing="2" fill="rgba(255,255,255,0.65)">
+        RECOVERY COUNSELING
+      </text>
+    </svg>
+  );
+}
+
 const features = [
   { icon: Heart, text: 'Matched to counselors who understand your journey' },
   { icon: Shield, text: 'Private, judgment-free, and fully confidential' },
@@ -17,57 +79,25 @@ export default function Welcome() {
       <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
-      {/* Logo area */}
+      {/* Wordmark */}
       <motion.div
         className="text-center mt-8"
         initial={{ opacity: 0, y: -24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-xl">
-          <span className="text-4xl">💜</span>
-        </div>
         <h1 className="text-white text-4xl font-bold tracking-tight">RightFit</h1>
         <p className="text-white/80 text-lg mt-1">Find your path to recovery</p>
       </motion.div>
 
-      {/* Illustration / card preview */}
+      {/* Emblem */}
       <motion.div
-        className="relative w-full max-w-sm mx-auto"
-        initial={{ opacity: 0, scale: 0.9 }}
+        className="flex flex-col items-center"
+        initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Stack of cards preview */}
-        <div className="relative h-64 flex items-center justify-center">
-          <div className="absolute bg-white/20 backdrop-blur-sm rounded-3xl w-64 h-56 rotate-6 shadow-lg" />
-          <div className="absolute bg-white/30 backdrop-blur-sm rounded-3xl w-64 h-56 -rotate-3 shadow-lg" />
-          <div className="bg-white rounded-3xl w-64 h-56 shadow-2xl p-5 flex flex-col justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-violet-100 flex items-center justify-center text-2xl">👩‍⚕️</div>
-              <div>
-                <div className="font-bold text-gray-900 text-sm">Dr. Amara Osei</div>
-                <div className="text-violet-600 text-xs font-medium">Clinical Psychologist</div>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {['Trauma & PTSD', 'Dual Diagnosis', 'CBT'].map(tag => (
-                <span key={tag} className="text-xs bg-violet-50 text-violet-700 px-2 py-0.5 rounded-full font-medium">{tag}</span>
-              ))}
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <span className="text-yellow-400 text-sm">★</span>
-                <span className="text-gray-700 text-sm font-semibold">4.9</span>
-                <span className="text-gray-400 text-xs">(134)</span>
-              </div>
-              <div className="flex gap-2">
-                <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-lg">✕</div>
-                <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-lg">♥</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <RightFitEmblem />
       </motion.div>
 
       {/* Features */}
