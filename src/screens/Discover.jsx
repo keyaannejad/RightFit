@@ -28,15 +28,15 @@ export default function Discover() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-gradient-to-b from-violet-50 to-white">
+    <div className="h-dvh flex flex-col bg-gradient-to-b from-violet-50 to-white overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 pb-2 screen-top">
+      <div className="flex items-center justify-between px-5 pb-2 screen-top flex-shrink-0">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
-            RightFit <span className="text-2xl">💜</span>
+          <h1 className="text-xl font-bold text-gray-900">
+            RightFit <span>💜</span>
           </h1>
           {state.user && (
-            <p className="text-gray-400 text-sm">Hello, {state.user.name} ✨</p>
+            <p className="text-gray-400 text-xs">Hello, {state.user.name} ✨</p>
           )}
         </div>
         <button
@@ -48,21 +48,21 @@ export default function Discover() {
         </button>
       </div>
 
-      {/* Card stack */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 pb-2 relative min-h-0">
+      {/* Card stack — takes all available space between header and buttons */}
+      <div className="flex-1 min-h-0 flex flex-col items-center justify-center px-5 py-2">
         {remaining.length === 0 ? (
           <EmptyState onReset={handleReset} passed={state.passed.length} liked={state.liked.length} />
         ) : (
-          <div className="relative w-full max-w-sm" style={{ height: 'min(480px, 56dvh)' }}>
-            {/* Render bottom 2 cards as decorative stack */}
+          <div className="relative w-full h-full max-w-sm">
+            {/* Background stack cards */}
             {remaining.slice(1, 3).map((c, i) => (
               <div
                 key={c.id}
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  transform: `scale(${0.96 - i * 0.03}) translateY(${(i + 1) * 10}px)`,
+                  transform: `scale(${0.97 - i * 0.03}) translateY(${(i + 1) * 8}px)`,
                   zIndex: 2 - i,
-                  opacity: 1 - i * 0.2,
+                  opacity: 0.7 - i * 0.2,
                 }}
               >
                 <div className="bg-white rounded-3xl card-shadow h-full" />
@@ -87,19 +87,17 @@ export default function Discover() {
         )}
       </div>
 
-      {/* Action buttons */}
+      {/* Action buttons — fixed height, always visible above nav */}
       {remaining.length > 0 && (
-        <div className="flex items-center justify-center gap-5 content-bottom pt-4">
-          {/* Pass */}
+        <div className="flex-shrink-0 flex items-center justify-center gap-5 pb-24 pt-3">
           <motion.button
             onClick={() => handlePass(remaining[0]?.id)}
             whileTap={{ scale: 0.88 }}
-            className="w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-400 border-2 border-red-100 active:bg-red-50 transition-colors"
+            className="w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-red-400 border-2 border-red-100"
           >
             <X size={24} strokeWidth={2.5} />
           </motion.button>
 
-          {/* Undo */}
           <motion.button
             onClick={handleReset}
             whileTap={{ scale: 0.88 }}
@@ -108,7 +106,6 @@ export default function Discover() {
             <RotateCcw size={16} />
           </motion.button>
 
-          {/* Like */}
           <motion.button
             onClick={() => handleLike(remaining[0]?.id)}
             whileTap={{ scale: 0.88 }}

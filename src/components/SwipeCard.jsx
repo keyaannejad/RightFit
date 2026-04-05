@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
-import { Star, MapPin, Clock } from 'lucide-react';
+import { Star, MapPin } from 'lucide-react';
 
 const SWIPE_THRESHOLD = 100;
 
 export default function SwipeCard({ counselor, onLike, onPass, isTop, style = {} }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotate = useTransform(x, [-300, 300], [-18, 18]);
+  const rotate = useTransform(x, [-300, 300], [-15, 15]);
   const likeOpacity = useTransform(x, [20, 80], [0, 1]);
   const nopeOpacity = useTransform(x, [-80, -20], [1, 0]);
 
@@ -24,13 +24,17 @@ export default function SwipeCard({ counselor, onLike, onPass, isTop, style = {}
 
   function flyOut(dir) {
     const target = dir === 'right' ? 600 : -600;
-    animate(x, target, { duration: 0.3, ease: 'easeOut', onComplete: () => dir === 'right' ? onLike(counselor.id) : onPass(counselor.id) });
+    animate(x, target, {
+      duration: 0.3,
+      ease: 'easeOut',
+      onComplete: () => dir === 'right' ? onLike(counselor.id) : onPass(counselor.id),
+    });
     animate(y, 60, { duration: 0.3, ease: 'easeOut' });
   }
 
   return (
     <motion.div
-      className="absolute w-full swipe-card"
+      className="absolute inset-0 swipe-card"
       style={{ x, y, rotate, ...style }}
       drag={isTop}
       dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
@@ -40,7 +44,7 @@ export default function SwipeCard({ counselor, onLike, onPass, isTop, style = {}
     >
       {/* CONNECT stamp */}
       <motion.div
-        className="absolute top-6 left-5 z-20 border-4 border-green-500 text-green-500 font-black text-xl px-4 py-1 rounded-xl -rotate-12 select-none pointer-events-none"
+        className="absolute top-6 left-4 z-20 border-4 border-green-500 text-green-600 font-black text-lg px-3 py-0.5 rounded-xl -rotate-12 select-none pointer-events-none"
         style={{ opacity: likeOpacity }}
       >
         CONNECT
@@ -48,63 +52,66 @@ export default function SwipeCard({ counselor, onLike, onPass, isTop, style = {}
 
       {/* SKIP stamp */}
       <motion.div
-        className="absolute top-6 right-5 z-20 border-4 border-red-400 text-red-400 font-black text-xl px-4 py-1 rounded-xl rotate-12 select-none pointer-events-none"
+        className="absolute top-6 right-4 z-20 border-4 border-red-400 text-red-500 font-black text-lg px-3 py-0.5 rounded-xl rotate-12 select-none pointer-events-none"
         style={{ opacity: nopeOpacity }}
       >
         SKIP
       </motion.div>
 
       <div
-        className="bg-white rounded-3xl overflow-hidden card-shadow select-none h-full flex flex-col"
+        className="bg-white rounded-3xl overflow-hidden card-shadow h-full flex flex-col select-none"
         style={{ cursor: isTop ? 'grab' : 'default' }}
       >
-        {/* Photo — takes up most of the card */}
-        <div className="relative flex-1 min-h-0 overflow-hidden">
+        {/* Photo */}
+        <div className="relative overflow-hidden" style={{ flex: '1 1 0', minHeight: 0 }}>
           <img
             src={counselor.photo}
             alt={counselor.name}
             className="w-full h-full object-cover object-top"
             draggable={false}
           />
-          {/* Gradient overlay at bottom of photo */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
 
-          {/* Rating badge top-right */}
-          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
-            <Star size={13} className="text-yellow-400 fill-yellow-400" />
+          {/* Rating */}
+          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+            <Star size={12} className="text-yellow-400 fill-yellow-400" />
             <span className="text-gray-900 text-sm font-bold">{counselor.rating}</span>
           </div>
 
-          {/* Name + title over photo bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <h3 className="text-white font-bold text-xl leading-tight drop-shadow">{counselor.name}</h3>
-            <p className="text-white/85 text-sm font-medium drop-shadow">{counselor.title}</p>
+          {/* Name overlay */}
+          <div className="absolute bottom-3 left-4 right-4">
+            <p className="text-white font-bold text-xl leading-tight drop-shadow-md">{counselor.name}</p>
+            <p className="text-white/80 text-sm leading-tight drop-shadow">{counselor.title}</p>
           </div>
         </div>
 
-        {/* Compact info row */}
-        <div className="px-4 py-3 space-y-2.5">
-          <div className="flex items-center gap-4 text-xs text-gray-500">
-            <span className="flex items-center gap-1"><MapPin size={11} />{counselor.location}</span>
-            <span className="flex items-center gap-1 text-emerald-600 font-medium">
-              <Clock size={11} />{counselor.availability}
-            </span>
+        {/* Info strip */}
+        <div className="px-4 pt-3 pb-3 space-y-2">
+          {/* Location row */}
+          <div className="flex items-center gap-1.5 text-gray-500">
+            <MapPin size={11} className="flex-shrink-0" />
+            <span className="text-xs">{counselor.location}</span>
+            <span className="text-gray-300 mx-1">·</span>
+            <span className="text-xs text-emerald-600 font-semibold">{counselor.availability}</span>
           </div>
 
-          {/* Specialization tags */}
-          <div className="flex flex-wrap gap-1.5">
+          {/* Tags row — all on one line, overflow hidden */}
+          <div className="flex gap-1.5 overflow-hidden">
             {counselor.specializations.slice(0, 3).map(s => (
-              <span key={s} className="text-xs px-2.5 py-1 rounded-full font-medium bg-violet-50 text-violet-700">
+              <span
+                key={s}
+                className="text-xs px-2 py-0.5 rounded-full font-medium bg-violet-50 text-violet-700 whitespace-nowrap flex-shrink-0"
+              >
                 {s}
               </span>
             ))}
           </div>
 
-          {/* Success stats */}
-          <div className="flex items-center gap-3 text-xs pb-0.5">
-            <span className="text-green-600 font-bold">{counselor.successRate}% success rate</span>
-            <span className="text-gray-400">·</span>
-            <span className="text-gray-500">{counselor.clientsHelped} clients helped</span>
+          {/* Stats row */}
+          <div className="flex items-center gap-2 text-xs">
+            <span className="font-bold text-green-600">{counselor.successRate}% success</span>
+            <span className="text-gray-300">·</span>
+            <span className="text-gray-500">{counselor.clientsHelped} clients</span>
           </div>
         </div>
       </div>
