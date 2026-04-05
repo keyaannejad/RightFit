@@ -48,12 +48,14 @@ export default function Discover() {
         </button>
       </div>
 
-      {/* Card stack — takes all available space between header and buttons */}
-      <div className="flex-1 min-h-0 flex flex-col px-3">
+      {/* Card stack — fills all space between header and action buttons */}
+      <div className="flex-1 min-h-0 relative px-2">
         {remaining.length === 0 ? (
-          <EmptyState onReset={handleReset} passed={state.passed.length} liked={state.liked.length} />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <EmptyState onReset={handleReset} passed={state.passed.length} liked={state.liked.length} />
+          </div>
         ) : (
-          <div className="relative w-full flex-1 min-h-0">
+          <div className="absolute inset-0">
             {/* Background stack cards */}
             {remaining.slice(1, 3).map((c, i) => (
               <div
@@ -87,9 +89,9 @@ export default function Discover() {
         )}
       </div>
 
-      {/* Action buttons — fixed height, always visible above nav */}
+      {/* Action buttons */}
       {remaining.length > 0 && (
-        <div className="flex-shrink-0 flex items-center justify-center gap-5 pb-24 pt-3">
+        <div className="flex-shrink-0 flex items-center justify-center gap-5 pb-20 pt-2">
           <motion.button
             onClick={() => handlePass(remaining[0]?.id)}
             whileTap={{ scale: 0.88 }}

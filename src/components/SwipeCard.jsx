@@ -88,11 +88,11 @@ export default function SwipeCard({ counselor, onLike, onPass, isTop, style = {}
         {/* Info strip */}
         <div className="px-4 pt-3 pb-3 space-y-2">
           {/* Location row */}
-          <div className="flex items-center gap-1.5 text-gray-500">
+          <div className="flex items-center gap-1.5 text-gray-500 overflow-hidden">
             <MapPin size={11} className="flex-shrink-0" />
-            <span className="text-xs">{counselor.location}</span>
-            <span className="text-gray-300 mx-1">·</span>
-            <span className="text-xs text-emerald-600 font-semibold">{counselor.availability}</span>
+            <span className="text-xs truncate">{counselor.location}</span>
+            <span className="text-gray-300 mx-1 flex-shrink-0">·</span>
+            <span className="text-xs text-emerald-600 font-semibold whitespace-nowrap flex-shrink-0">{counselor.availability}</span>
           </div>
 
           {/* Tags row — all on one line, overflow hidden */}
