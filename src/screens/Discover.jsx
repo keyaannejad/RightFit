@@ -49,11 +49,11 @@ export default function Discover() {
       </div>
 
       {/* Card stack — takes all available space between header and buttons */}
-      <div className="flex-1 min-h-0 flex flex-col items-center justify-center px-5 py-2">
+      <div className="flex-1 min-h-0 flex flex-col px-3">
         {remaining.length === 0 ? (
           <EmptyState onReset={handleReset} passed={state.passed.length} liked={state.liked.length} />
         ) : (
-          <div className="relative w-full h-full max-w-sm">
+          <div className="relative w-full flex-1 min-h-0">
             {/* Background stack cards */}
             {remaining.slice(1, 3).map((c, i) => (
               <div
