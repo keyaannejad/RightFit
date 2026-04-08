@@ -72,10 +72,15 @@ export default function SwipeCard({ counselor, onLike, onPass, isTop, style = {}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
 
-          {/* Rating */}
-          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-            <Star size={12} className="text-yellow-400 fill-yellow-400" />
-            <span className="text-gray-900 text-sm font-bold">{counselor.rating}</span>
+          {/* Badges */}
+          <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
+            <div className="bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+              <Star size={12} className="text-yellow-400 fill-yellow-400" />
+              <span className="text-gray-900 text-sm font-bold">{counselor.rating}</span>
+            </div>
+            <div className="bg-green-500 px-2.5 py-0.5 rounded-full shadow-sm">
+              <span className="text-white text-xs font-bold tracking-wide">OHIP Covered</span>
+            </div>
           </div>
 
           {/* Name overlay */}
