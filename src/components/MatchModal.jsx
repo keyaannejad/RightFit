@@ -104,11 +104,11 @@ export default function MatchModal({ counselorId }) {
                     🎉 It's a Match!
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 leading-snug">
-                    You and {counselor.name} connected!
+                    You and {counselor.name} are a great fit!
                   </h2>
                   <p className="text-gray-500 text-sm mt-2 leading-relaxed">
-                    {counselor.name.split(' ')[0]} is ready to support your recovery journey.
-                    Send a message to get started — it only takes a moment.
+                    {counselor.name.split(' ')[0]} specializes in gambling disorder and is ready to hear from you.
+                    Break the ice — it only takes one message.
                   </p>
                 </div>
 
@@ -171,14 +171,14 @@ export default function MatchModal({ counselorId }) {
 
             <div className="px-5 py-4">
               <p className="text-gray-500 text-sm mb-4 text-center">
-                Say hi! Here are some conversation starters:
+                Break the ice — pick a starter or write your own:
               </p>
               <div className="space-y-2">
                 {[
-                  `Hi ${counselor.name.split(' ')[0]}! I'd love to learn more about your approach.`,
-                  "What does a first session look like with you?",
-                  "Do you have availability for a virtual intro call?",
-                  "I saw your profile and think we'd be a great fit.",
+                  `Hi ${counselor.name.split(' ')[0]}! I'm dealing with a gambling concern and your profile really stood out.`,
+                  "What does a first session look like? I'm a little nervous but ready.",
+                  "I've tried to stop before. Can you help me understand why it keeps coming back?",
+                  "Do you have any availability this week for an intro call?",
                 ].map(msg => (
                   <button
                     key={msg}
